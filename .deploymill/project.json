@@ -13,5 +13,8 @@
     "retries": 3,
     "intervalMs": 3000,
     "timeoutMs": 5000
+  },
+  "database": {
+    "provider": "neon"
   }
 }

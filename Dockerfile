@@ -14,5 +14,10 @@ ENV NODE_ENV=production
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/src ./src
+COPY --from=build /app/scripts ./scripts
+COPY --from=build /app/migrations ./migrations
 EXPOSE 3000
-CMD ["node", "src/index.js"]
+# Run migrations before serving traffic. node-pg-migrate is idempotent, so this
+# is safe on every container start; a failed migration exits non-zero and the
+# platform marks the deploy failed rather than serving a half-applied schema.
+CMD ["sh", "-c", "pnpm run migrate && pnpm start"]

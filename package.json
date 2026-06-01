@@ -8,10 +8,16 @@
     "node": ">=22"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "migrate": "node scripts/migrate.js",
+    "migrate:create": "node-pg-migrate create"
   },
   "dependencies": {
     "hono": "^4.6.0",
-    "@hono/node-server": "^1.13.0"
+    "@hono/node-server": "^1.13.0",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "node-pg-migrate": "^7.6.0"
   }
 }
