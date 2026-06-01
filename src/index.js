@@ -13,15 +13,15 @@ const PAGE = `<!doctype html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>deploymill — join the waitlist</title>
-<meta name="description" content="deploymill is rolling out slowly while we watch scale. Leave your email and we'll notify you the moment we open up more signups." />
+<title>Deploy Mill — join the waitlist</title>
+<meta name="description" content="Deploy Mill is rolling out slowly while we watch scale. Leave your email and we'll notify you the moment we open up more signups." />
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: #0a0a0f;
-    color: #e6e7eb;
+    background: #0a1628;
+    color: #94a3b8;
     line-height: 1.6;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -29,34 +29,44 @@ const PAGE = `<!doctype html>
     display: flex;
     flex-direction: column;
   }
-  a { color: #c4b5fd; text-decoration: none; }
-  a:hover { color: #fff; }
+  a { color: #00e5ff; text-decoration: none; }
+  a:hover { color: #e2e8f0; }
   code { font-family: ui-monospace, "JetBrains Mono", Menlo, monospace; }
 
   .bg {
     position: fixed; inset: 0; z-index: -1; pointer-events: none;
     background:
-      radial-gradient(60rem 40rem at 80% -10%, rgba(120, 80, 255, 0.18), transparent 60%),
-      radial-gradient(50rem 30rem at -10% 30%, rgba(0, 200, 255, 0.12), transparent 60%),
-      radial-gradient(40rem 30rem at 50% 110%, rgba(255, 80, 180, 0.10), transparent 60%);
+      radial-gradient(80rem 50rem at 100% -10%, rgba(0,229,255,0.06), transparent 55%),
+      radial-gradient(60rem 40rem at -10% 60%, rgba(251,191,36,0.05), transparent 55%),
+      radial-gradient(40rem 40rem at 50% 110%, rgba(0,180,255,0.07), transparent 60%);
   }
   .grid-bg {
     position: fixed; inset: 0; z-index: -1; pointer-events: none;
     background-image:
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent 80%);
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 85% 55% at 50% 20%, black, transparent 80%);
   }
 
   nav {
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 72rem; width: 100%; margin: 0 auto; padding: 1.25rem 1.5rem;
+    max-width: 76rem; width: 100%; margin: 0 auto; padding: 1.1rem 1.5rem;
   }
-  .logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; color: #e6e7eb; }
-  nav .links { display: flex; gap: 1.25rem; align-items: center; font-size: 0.9rem; color: #9ca3af; }
-  nav .links a { color: #9ca3af; }
-  nav .links a:hover { color: #fff; }
+  .logo {
+    font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em;
+    color: #e2e8f0;
+    display: flex; align-items: center; gap: 0.45rem;
+  }
+  .logo .logo-mark {
+    display: inline-flex; width: 1.6rem; height: 1.6rem; border-radius: 0.3rem;
+    background: linear-gradient(135deg, #00e5ff, #0088cc);
+    align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 900; color: #0a1628;
+  }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; font-size: 0.875rem; color: #64748b; }
+  nav .links a { color: #64748b; }
+  nav .links a:hover { color: #e2e8f0; }
 
   main {
     flex: 1; display: flex; align-items: center; justify-content: center;
@@ -65,66 +75,77 @@ const PAGE = `<!doctype html>
   .card {
     width: 100%;
     padding: 2.25rem;
-    background: rgba(20, 20, 30, 0.7);
+    background: rgba(10, 22, 40, 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 1rem;
-    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(167,139,250,0.08);
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    border-radius: 0.875rem;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,229,255,0.06);
   }
   .pill {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.78rem; color: #c9cad1; font-weight: 500;
-    padding: 0.3rem 0.7rem; margin-bottom: 1.25rem;
-    border: 1px solid rgba(167,139,250,0.25); border-radius: 999px;
-    background: rgba(167,139,250,0.06);
+    font-size: 0.78rem; color: #00e5ff; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem; margin-bottom: 1.25rem;
+    border: 1px solid rgba(0,229,255,0.2); border-radius: 999px;
+    background: rgba(0,229,255,0.07);
   }
-  .ping { width: 7px; height: 7px; border-radius: 999px; background: #34d399; box-shadow: 0 0 0 0 rgba(52,211,153,0.6); animation: ping 1.8s ease-out infinite; }
-  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); } 70% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+  .ping { width: 6px; height: 6px; border-radius: 999px; background: #00e5ff; box-shadow: 0 0 8px #00e5ff; animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
 
-  h1 { font-size: 1.85rem; margin: 0 0 0.6rem; letter-spacing: -0.02em; font-weight: 700; }
+  h1 { font-size: 1.85rem; margin: 0 0 0.6rem; letter-spacing: -0.02em; font-weight: 700; color: #e2e8f0; }
   h1 .grad {
-    background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+    background: linear-gradient(90deg, #00e5ff 0%, #38bdf8 60%, #fbbf24 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  p.sub { color: #9ca3af; margin: 0 0 1.6rem; font-size: 0.97rem; }
+  p.sub { color: #64748b; margin: 0 0 1.6rem; font-size: 0.97rem; }
 
   form { display: flex; flex-direction: column; gap: 0.7rem; }
   .row { display: flex; gap: 0.6rem; }
   input {
     flex: 1; padding: 0.8rem 0.9rem;
-    border: 1px solid rgba(255,255,255,0.1); border-radius: 0.6rem;
-    font-size: 0.97rem; background: rgba(255,255,255,0.03);
-    color: #e6e7eb; font-family: inherit;
+    border: 1px solid rgba(0,229,255,0.15); border-radius: 0.6rem;
+    font-size: 0.97rem; background: rgba(0,229,255,0.03);
+    color: #e2e8f0; font-family: inherit;
     transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   }
-  input::placeholder { color: #4b5563; }
+  input::placeholder { color: #334155; }
   input:focus {
-    outline: none; border-color: rgba(167,139,250,0.6);
-    background: rgba(255,255,255,0.05); box-shadow: 0 0 0 3px rgba(167,139,250,0.15);
+    outline: none; border-color: rgba(0,229,255,0.45);
+    background: rgba(0,229,255,0.05); box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
   }
   button {
     padding: 0.8rem 1.2rem; border: none; border-radius: 0.6rem;
-    font-size: 0.95rem; font-weight: 600; font-family: inherit; cursor: pointer;
-    color: #fff; background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
-    transition: transform 0.1s ease, opacity 0.15s ease; white-space: nowrap;
+    font-size: 0.95rem; font-weight: 700; font-family: inherit; cursor: pointer;
+    color: #0a1628; background: linear-gradient(135deg, #00e5ff, #0ea5e9);
+    box-shadow: 0 8px 24px -8px rgba(0,229,255,0.4);
+    transition: transform 0.1s ease, box-shadow 0.2s ease, opacity 0.15s ease; white-space: nowrap;
   }
-  button:hover { transform: translateY(-1px); }
+  button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 30px -8px rgba(0,229,255,0.55); }
   button:disabled { opacity: 0.6; cursor: default; transform: none; }
-  .hint { font-size: 0.8rem; color: #6b7280; margin-top: 0.2rem; }
+  .hint { font-size: 0.8rem; color: #475569; margin-top: 0.2rem; }
   .msg { font-size: 0.88rem; margin-top: 0.4rem; min-height: 1.1rem; }
   .msg.err { color: #fca5a5; }
   .msg.ok { color: #6ee7b7; }
 
   .done { text-align: center; padding: 0.5rem 0; }
-  .done .check { font-size: 2.5rem; line-height: 1; margin-bottom: 0.6rem; }
-  .done h2 { font-size: 1.3rem; margin: 0 0 0.4rem; }
-  .done p { color: #9ca3af; margin: 0; font-size: 0.95rem; }
+  .done .check {
+    width: 3rem; height: 3rem; margin: 0 auto 0.7rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px; font-size: 1.5rem; line-height: 1;
+    color: #0a1628; background: linear-gradient(135deg, #00e5ff, #0ea5e9);
+    box-shadow: 0 0 24px -4px rgba(0,229,255,0.6);
+  }
+  .done h2 { font-size: 1.3rem; margin: 0 0 0.4rem; color: #e2e8f0; }
+  .done p { color: #64748b; margin: 0; font-size: 0.95rem; }
 
   footer {
-    max-width: 72rem; width: 100%; margin: 0 auto;
+    max-width: 76rem; width: 100%; margin: 0 auto;
     padding: 1.5rem; display: flex; justify-content: space-between;
-    color: #6b7280; font-size: 0.82rem;
+    border-top: 1px solid rgba(0,229,255,0.08);
+    color: #334155; font-size: 0.82rem;
   }
+  footer a { color: #64748b; }
+  footer a:hover { color: #94a3b8; }
   @media (max-width: 520px) { .row { flex-direction: column; } h1 { font-size: 1.55rem; } }
 </style>
 </head>
@@ -133,7 +154,7 @@ const PAGE = `<!doctype html>
 <div class="grid-bg"></div>
 
 <nav>
-  <a href="https://deploymill.com" class="logo">deploymill</a>
+  <a href="https://deploymill.com" class="logo"><span class="logo-mark">dm</span> Deploy Mill</a>
   <div class="links">
     <a href="https://deploymill.com">Home</a>
   </div>
@@ -143,9 +164,9 @@ const PAGE = `<!doctype html>
   <div class="card">
     <div id="form-wrap">
       <span class="pill"><span class="ping"></span> Private beta · rolling out slowly</span>
-      <h1>Join the <span class="grad">deploymill</span> waitlist</h1>
+      <h1>Join the <span class="grad">Deploy Mill</span> waitlist</h1>
       <p class="sub">
-        We're opening deploymill up a little at a time so we can keep a close eye on
+        We're opening Deploy Mill up a little at a time so we can keep a close eye on
         scale and reliability. If you'd like to test or start using it, drop your email
         and we'll notify you the moment we open the next round of signups.
       </p>
@@ -163,7 +184,7 @@ const PAGE = `<!doctype html>
 </main>
 
 <footer>
-  <div>© <span id="yr"></span> deploymill</div>
+  <div>© <span id="yr"></span> Deploy Mill</div>
   <div><a href="https://deploymill.com">deploymill.com</a></div>
 </footer>
 
