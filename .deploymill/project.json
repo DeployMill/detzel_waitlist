@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "waitlist",
+  "workload": "web",
+  "port": 3000,
+  "domains": {
+    "prod": "waitlist-detzel.deploymill.app"
+  },
+  "mounts": [],
+  "rollback": false,
+  "health": {
+    "path": "/healthz",
+    "retries": 3,
+    "intervalMs": 3000,
+    "timeoutMs": 5000
+  }
+}
