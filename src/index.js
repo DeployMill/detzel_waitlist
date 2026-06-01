@@ -54,7 +54,6 @@ const PAGE = `<!doctype html>
     max-width: 72rem; width: 100%; margin: 0 auto; padding: 1.25rem 1.5rem;
   }
   .logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; color: #e6e7eb; }
-  .logo .dot { color: #a78bfa; }
   nav .links { display: flex; gap: 1.25rem; align-items: center; font-size: 0.9rem; color: #9ca3af; }
   nav .links a { color: #9ca3af; }
   nav .links a:hover { color: #fff; }
@@ -134,7 +133,7 @@ const PAGE = `<!doctype html>
 <div class="grid-bg"></div>
 
 <nav>
-  <a href="https://deploymill.com" class="logo">deploy<span class="dot">.</span>mill</a>
+  <a href="https://deploymill.com" class="logo">deploymill</a>
   <div class="links">
     <a href="https://deploymill.com">Home</a>
   </div>
@@ -200,8 +199,8 @@ const PAGE = `<!doctype html>
       }
       wrap.innerHTML =
         '<div class="done"><div class="check">✓</div>' +
-        '<h2>You\\'re on the list</h2>' +
-        '<p>' + (body.already ? "You were already signed up — we\\'ve got you." : "Thanks! We\\'ll email you the moment the next signups open.") + '</p></div>';
+        '<h2>You\'re on the list</h2>' +
+        '<p>' + (body.already ? "You were already signed up — we\'ve got you." : "Thanks! We\'ll email you the moment the next signups open.") + '</p></div>';
     } catch (err) {
       show("Network error. Please try again.", "err");
       btn.disabled = false;
