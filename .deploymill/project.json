@@ -4,7 +4,10 @@
   "workload": "web",
   "port": 3000,
   "domains": {
-    "prod": "waitlist-detzel.deploymill.app"
+    "prod": "waitlist-detzel.deploymill.app",
+    "custom": [
+      "waitlist.deploymill.com"
+    ]
   },
   "mounts": [],
   "rollback": false,
