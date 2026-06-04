@@ -219,14 +219,22 @@ const PAGE = `<!doctype html>
         return;
       }
       const base = body.already
-        ? "You were already signed up — we\'ve got you."
-        : "Thanks! We\'ll email you the moment the next signups open.";
-      wrap.innerHTML =
-        '<div class="done"><div class="check">✓</div>' +
-        '<h2>You\'re on the list</h2>' +
-        '<p>' + base + '</p>' +
-        '<p style="margin-top:0.85rem;font-size:0.88rem;color:#475569;">Want to jump the line? Spots open sooner for people who reach out directly. If you want it badly enough, you\'ll find me — track me down on LinkedIn or figure out my email and make your case.</p>' +
-        '</div>';
+        ? "You were already signed up — we've got you."
+        : "Thanks! We'll email you the moment the next signups open.";
+      const done = document.createElement("div");
+      done.className = "done";
+      const check = document.createElement("div");
+      check.className = "check";
+      check.textContent = "✓";
+      const h2 = document.createElement("h2");
+      h2.textContent = "You're on the list";
+      const p1 = document.createElement("p");
+      p1.textContent = base;
+      const p2 = document.createElement("p");
+      p2.style.cssText = "margin-top:0.85rem;font-size:0.88rem;color:#475569;";
+      p2.textContent = "Want to jump the line? Spots open sooner for people who reach out directly. If you want it badly enough, you'll find me — track me down on LinkedIn or figure out my email and make your case.";
+      done.append(check, h2, p1, p2);
+      wrap.replaceChildren(done);
     } catch (err) {
       show("Network error. Please try again.", "err");
       btn.disabled = false;
