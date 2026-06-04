@@ -218,10 +218,15 @@ const PAGE = `<!doctype html>
         btn.disabled = false;
         return;
       }
+      const base = body.already
+        ? "You were already signed up — we\'ve got you."
+        : "Thanks! We\'ll email you the moment the next signups open.";
       wrap.innerHTML =
         '<div class="done"><div class="check">✓</div>' +
         '<h2>You\'re on the list</h2>' +
-        '<p>' + (body.already ? "You were already signed up — we\'ve got you." : "Thanks! We\'ll email you the moment the next signups open.") + '</p></div>';
+        '<p>' + base + '</p>' +
+        '<p style="margin-top:0.85rem;font-size:0.88rem;color:#475569;">Want to jump the line? Spots open sooner for people who reach out directly. If you want it badly enough, you\'ll find me — track me down on LinkedIn or figure out my email and make your case.</p>' +
+        '</div>';
     } catch (err) {
       show("Network error. Please try again.", "err");
       btn.disabled = false;
